@@ -14,9 +14,12 @@ Advanced details: IAM instance profile (select IAM role)
 
 User Data:
 #!/bin/bash
-yum install pip -y
-pip install ansible
-ln -sf /usr/local/bin/ansible /usr/bin/ansible
+sudo useradd -m ansibleadmin
+sudo echo "ansibleadmin ALL=(ALL) NOPASSWD: ALL" | sudo tee -a /etc/sudoers
+su ansibleadmin
+sudo yum install pip -y
+sudo pip install ansible
+sudo ln -sf /usr/local/bin/ansible /usr/bin/ansible
 sudo dnf install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
 
 Verification commands after Installation:
